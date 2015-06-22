@@ -1,0 +1,7 @@
+/_build
+/deps
+erl_crash.dump
+*.ez
+
+/ssh/ssh_host_key
+/ssh/ssh_host_key.pub
