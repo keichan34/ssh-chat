@@ -25,6 +25,21 @@ defmodule SSHChat.ServerWorker do
       # :io.setopts(expand_fun: fn(bef) -> expand(bef) end)
       IO.puts "Hello #{user}!"
       Process.put :user, user
+      start_repl
     end)
   end
+
+  defp start_repl do
+    line = IO.gets("CLI> ")
+    result = eval_cli(line)
+    IO.puts("-> #{result}")
+    case result do
+      :done ->
+        exit(:normal)
+      _ ->
+        start_repl
+    end
+  end
+
+  defp eval_cli(line), do: line
 end

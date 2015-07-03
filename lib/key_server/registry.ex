@@ -10,7 +10,8 @@ defmodule KeyServer.Registry do
 
   Returns `{:ok, :registered}` on register, `{:ok, :authenticated}` on
   successful authentication, and `{:error, :invalid_key}` on unsuccessful
-  authentication. `{:error, :already_}
+  authentication. `{:error, :invalid_key}` will be returned if the public key
+  has already been authenticated to a different user.
   """
   def authenticate_or_register_user(name, public_key) do
     GenServer.call(__MODULE__, {:auth_or_register, name, public_key})
